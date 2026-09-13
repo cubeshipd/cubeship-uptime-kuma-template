@@ -38,8 +38,12 @@ instead of two things to keep in step.
 4. Add a monitor. An app on the same instance is reachable at its internal
    address, `cubeship-<project>-<environment>-<app>`, on its own port.
 
-A forgotten password is reset from the app's console with
-`npm run reset-password`.
+A forgotten password is reset over SSH on the machine the app runs on, since
+Cubeship has no console into an app:
+
+```bash
+docker exec -it $(docker ps -qf name=cubeship-uptime-kuma-production-uptime-kuma) npm run reset-password
+```
 
 ## The volume
 
